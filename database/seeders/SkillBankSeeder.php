@@ -1,0 +1,142 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Career;
+use App\Models\SkillBank;
+use Illuminate\Database\Seeder;
+
+class SkillBankSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        // SkillBank::factory()->count(5)->create();
+        SkillBank::query()->delete();
+        $skills=[
+            'Others',
+            'Problem-solving',
+            'Effective communication skills',
+            'Self-direction',
+            'Drive',
+            'Adaptability/Flexibility',            
+            'Teamwork',
+            'Collaboration',
+            'Dealing with difficult situations',
+            'Self-awareness',
+            'Social skills',
+            'Dependability',
+            'Resilience',
+            'Perform effectively in a deadline environment',
+            'Quick-witted',
+            'Adaptability',
+            'Conflict resolution',            
+            'Leadership',
+            'Critical thinking',            
+            'Decision - making',
+            'Resourcefulness',
+            'Troubleshooting',
+            'Risk management',
+            'Research',
+            'Desire to learn',
+            'Creativity',
+            'Inspiring people',
+            'Giving clear feedback',
+            'Managing remote/virtual teams',
+            'Work ethic',
+            'Integrity',           
+            'Creativity',
+            'Adaptability',
+            'Work ethic',
+            'Financial Statement Analysis',
+            'Financial Control',
+            'Policy Formulation',
+            'Data Analysis and Visualization',
+            'Asset Management',
+            'Regulatory Compliance',
+            'Operations Management',
+            'Stakeholder Management	',
+            'Leadership Productivity and Performance Improvement',
+            'Strategic and Tactical Planning',
+            'Internal Control System	',
+            'Strategic Planning',
+            'Project Management',
+            'Courtesy',
+            'Customer Relationship Management (CRM)',
+            'Curiosity',
+            'Learning from others',
+            'Open-mindedness',
+            'Taking calculated risks',
+            'Innovation',
+            'Experimentation',
+            'Consistency',           
+            'Optimism',            
+            'Enthusiasm',
+            'Cooperation',
+            'Patience',
+            'Growth mindset',
+            'Attention to detail',
+            'Integrity',
+            'Persistence',
+            'Time management',
+            'Organization',           
+            'Motivation',
+            'Perseverance',
+            'Results-oriented',
+            'Active listening',
+            'Confidence',
+            'Respectfulness',
+            'Conflict resolution',
+            'Negotiation',
+            'Public speaking',
+            'Writing',
+            'Nonverbal communication',
+            'Empathy',
+            'Results oriented',
+            'Safety conscious',
+            'Technology savvy',
+            'Technology trend awareness',
+            'VIPs/HNIs Hospitality',
+            'Room Service & Supplies',
+            'Kitchen & Bath Cleaning',
+            'Operations Management',
+            'Material Management',
+            'Furniture and Upholstery Cleaning',
+            'Daily & Deep Cleaning',
+            'Health and Safety Compliance',
+            'Biosecurity',
+            'Dusting & Polishing',
+            'Room Tidying & Organising',
+            'Vacuuming & Mopping',
+            'Countertop, Appliance & Grout Cleaning',
+            'Clothes Laundering & Ironing',
+            'Account Management',
+            'Customer Service',
+            'Presales & Post Sales',
+            'Customer Retention',
+            'Due Deligence & Compliance',
+            'HNI Management',
+            'Operations Management',
+            'Stakeholder Management	',
+            'Performance Improvement',
+            'Strategic Planning',
+            'Product Knowledge',
+            'Team Management',
+            'Data Management	',
+            'Documentation',
+            'Report Writing',
+            'Lead Generation',
+            'People Management',
+        ];
+        foreach ($skills as $key => $value) {
+            SkillBank::create([
+               'career_id' => Career::all()->random()->id,
+                'skill' => $value,
+           ]);
+        }
+    }
+}

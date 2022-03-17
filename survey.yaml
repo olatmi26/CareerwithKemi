@@ -1,0 +1,177 @@
+models:
+  # Roles\Role:
+  #   name: string nullable
+  #   relationships:
+  #     belongsToMany: User
+
+  Services\Plan:
+    name: string nullable
+    relationships:
+      belongsToMany: User
+
+  Survey\SurveyCategory:
+    category: string nullable
+    relationships:
+      hasMany: Survey
+      # let go through it together.
+
+  Survey\SurveyType:
+    type: string nullable index
+
+  Survey\SetupSurvey:
+    Title: string:160 nullable
+    survey_category_id: id foreign nullable
+    survey_type_id: id foreign nullable
+    description: string nullable
+    isPublished: boolean nullable default:false
+    DatePublished: dateTime nullable
+    setupBy: id foreign:users.id nullable
+    surveyFeatureImage: string nullable
+    relationships:
+      hasMany: Question
+
+  Survey\QuestionType:
+    type: string index nullable
+    # this is where your input based, checkbox base, image base, dropdown base .....comes in
+
+  Survey\Question:
+    setup_survey_id: id foreign nullable
+    question_type_id: id foreign nullable
+    question: longText nullable
+    point: integer unsigned nullable index
+    addedBy: id foreign.users.id nullable
+    relationships:
+      hasMany: QuestionOption
+      # are u getting it...yes bba
+
+  Survey\QuestionOption:
+    question_id: id foreign nullable
+    option: string nullable index
+    isAnswer: boolean default:false nullable
+    # here, a question can have nth no of options but only one can be set to ansr
+
+  Survey\PublishSurvey:
+    setup_survey_id: id foreign.users.id nullable
+    # here u are making survey visible to nd users, just like exam paper and exam hall.
+    question_id: id foreign nullable
+    DateRollout: dateTime nullable
+    isPublished: boolean nullable default:true index
+    isSet: boolean default:false index
+    DateSetToOnline: dateTime nullable
+    publishedBy: id foreign.users.id nullable
+
+  Survey\AttemptSurvey:
+    takenBY: id foreign.users.id nullable
+    question_id: id foreign nullable
+    setup_survey_id: id foreign nullable
+    status: boolean nullable default:false
+    attemptCounter: unsigned integer nullable
+    # here attempCounter will give user lefrage to redo survey
+
+  Survey\CompletedSurvey:
+    user_id: id foreign nullable
+    attempt_survey_id: id foreign nullable
+    attemptCounter: unsigned integer nullable
+    amountGot: integer unsigned nullable
+    # atempt count here is washing against plan maxLinit per user
+
+  Survey\SurveyAttendee:
+    setup_survey_id: id foreign nullable
+    totalPersons: integer unsigned nullable
+    # summary of those Total poeple take the survey
+  # now ur plan per user
+  # where i include publisher user whose can publish/create survey that will be under role
+
+
+  Survey\SurveyResult:
+    attemptBY: id foreign.users.id nullable
+    totalScoreObtained: integer unsigned nullable
+    dateAttempt: dateTime nullable
+
+seeders: Role, Plan, SurveyCategory, SurveyType, SetupSurvey, QuestionType, Question, QuestionOption
+
+controllers:
+  Survey\SurveyCategory:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: category
+      save: surveyCategory
+      flash: surveyCategory.created-successfully
+      redirect: surveyCategory.index
+
+  Survey\SurveyType:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: type
+      save: surveyType
+      flash: surveyType.created-successfully
+      redirect: SurveyType.index
+
+  Survey\SetupSurvey:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: Title, survey_category_id, survey_type_id, description, isPublished, surveyFeatureImage
+      save: setupSurvey
+      flash: setupSurvey.created-successfully
+      redirect: SetupSurvey.index
+
+  Survey\SurveyQuestion:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: setup_survey_id, question, optionA, optionB, isAnswer
+      save: surveyQuestion
+      flash: surveyQuestion.created-successfully
+      redirect: SurveyQuestion.index
+
+  Survey\PublishSurvey:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: question_id, question_id, DateSetToOnline
+      save: publishSurvey
+      flash: publishSurvey.created-successfully
+      redirect: PublishSurvey.index
+
+  Survey\AttemptSurvey:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: question_id, setup_survey_id, takenBY, attemptCounter:nullable
+      save: attemptingSurvey
+      flash: attemptingSurvey.stored-successfully
+      redirect: AttemptSurvey.index with:attemptingSurvey
+
+  Survey\SurveyResult:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: attemptBY, totalScoreObtained, dateAttempt
+      save: surveyResult
+      flash: surveyResult.generated-successfully
+      redirect: Survey\SurveyResult.index
+
+  Survey\CompletedSurvey:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: user_id, attempt_survey_id, attemptCounter, amountGot
+      save: surveyResult
+      flash: surveyResult.generated-successfully
+      redirect: Survey\SurveyResult.index
+
+  # Roles\Role:
+  #   resource: index, show, create, edit, destroy, update
+  #   store:
+  #     validate: name
+  #     save: role
+  #     flash: role.generated-successfully
+  #     redirect: Roles\Role.index      
+
+  Services\Plan:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: name
+      save: plan
+      flash: plan.created-successfully
+      redirect:  Services\Plan.index
+
+
+# hink we are done  in.. where can i include publisher user baba
+# thats under role doone here right
+

@@ -1,0 +1,256 @@
+created:
+    - app/Http/Controllers/CareerController.php
+    - app/Http/Controllers/SkillBankController.php
+    - app/Http/Controllers/Services/ResumeTypeController.php
+    - app/Http/Controllers/Services/ResumeBuildController.php
+    - app/Http/Controllers/ProfileSummaryController.php
+    - app/Http/Controllers/SkillsController.php
+    - app/Http/Controllers/CompetencyController.php
+    - app/Http/Controllers/KeyAchievementController.php
+    - app/Http/Controllers/ExperienceController.php
+    - app/Http/Controllers/JobResponsibilityController.php
+    - app/Http/Controllers/EducationController.php
+    - app/Http/Controllers/ProfessionalAffiliationController.php
+    - app/Http/Controllers/TrainingController.php
+    - app/Http/Controllers/CareerFocusController.php
+    - app/Http/Controllers/MediaHandleController.php
+    - app/Http/Controllers/SocialHandleController.php
+    - app/Http/Controllers/RefereeController.php
+    - app/Http/Controllers/RecognitionController.php
+    - app/Http/Controllers/Services/PaymentController.php
+    - app/Http/Controllers/Services/RevenueController.php
+    - database/factories/CareerFactory.php
+    - database/factories/SkillBankFactory.php
+    - database/factories/Services/ResumeTypeFactory.php
+    - database/factories/Services/ResumeBuildFactory.php
+    - database/factories/Services/PaymentFactory.php
+    - database/factories/Services/RevenueFactory.php
+    - database/factories/ProfileSummaryFactory.php
+    - database/factories/SkillsFactory.php
+    - database/factories/CompetencyFactory.php
+    - database/factories/KeyAchievementFactory.php
+    - database/factories/ExperienceFactory.php
+    - database/factories/JobResponsibilityFactory.php
+    - database/factories/EducationFactory.php
+    - database/factories/ProfessionalAffiliationFactory.php
+    - database/factories/TrainingFactory.php
+    - database/factories/CareerFocusFactory.php
+    - database/factories/MediaHandleFactory.php
+    - database/factories/SocialHandleFactory.php
+    - database/factories/RefereeFactory.php
+    - database/factories/RecognitionFactory.php
+    - database/migrations/2022_03_15_113727_create_careers_table.php
+    - database/migrations/2022_03_15_113728_create_skill_banks_table.php
+    - database/migrations/2022_03_15_113729_create_resume_types_table.php
+    - database/migrations/2022_03_15_113730_create_resume_builds_table.php
+    - database/migrations/2022_03_15_113731_create_payments_table.php
+    - database/migrations/2022_03_15_113732_create_revenues_table.php
+    - database/migrations/2022_03_15_113733_create_profile_summaries_table.php
+    - database/migrations/2022_03_15_113734_create_skills_table.php
+    - database/migrations/2022_03_15_113735_create_competencies_table.php
+    - database/migrations/2022_03_15_113736_create_key_achievements_table.php
+    - database/migrations/2022_03_15_113737_create_experiences_table.php
+    - database/migrations/2022_03_15_113738_create_job_responsibilities_table.php
+    - database/migrations/2022_03_15_113739_create_education_table.php
+    - database/migrations/2022_03_15_113740_create_professional_affiliations_table.php
+    - database/migrations/2022_03_15_113741_create_trainings_table.php
+    - database/migrations/2022_03_15_113742_create_career_foci_table.php
+    - database/migrations/2022_03_15_113743_create_media_handles_table.php
+    - database/migrations/2022_03_15_113744_create_social_handles_table.php
+    - database/migrations/2022_03_15_113745_create_referees_table.php
+    - database/migrations/2022_03_15_113746_create_recognitions_table.php
+    - database/migrations/2022_03_15_113747_create_career_skill_bank_table.php
+    - database/migrations/2022_03_15_113748_create_skill_bank_user_table.php
+    - database/migrations/2022_03_15_113749_create_resume_build_user_table.php
+    - app/Models/Career.php
+    - app/Models/SkillBank.php
+    - app/Models/Services/ResumeType.php
+    - app/Models/Services/ResumeBuild.php
+    - app/Models/Services/Payment.php
+    - app/Models/Services/Revenue.php
+    - app/Models/ProfileSummary.php
+    - app/Models/Skills.php
+    - app/Models/Competency.php
+    - app/Models/KeyAchievement.php
+    - app/Models/Experience.php
+    - app/Models/JobResponsibility.php
+    - app/Models/Education.php
+    - app/Models/ProfessionalAffiliation.php
+    - app/Models/Training.php
+    - app/Models/CareerFocus.php
+    - app/Models/MediaHandle.php
+    - app/Models/SocialHandle.php
+    - app/Models/Referee.php
+    - app/Models/Recognition.php
+    - database/seeders/ResumeTypeSeeder.php
+    - database/seeders/MediaHandleSeeder.php
+    - database/seeders/CareerSeeder.php
+    - database/seeders/SkillBankSeeder.php
+    - tests/Feature/Http/Controllers/CareerControllerTest.php
+    - tests/Feature/Http/Controllers/SkillBankControllerTest.php
+    - tests/Feature/Http/Controllers/Services/ResumeTypeControllerTest.php
+    - tests/Feature/Http/Controllers/Services/ResumeBuildControllerTest.php
+    - tests/Feature/Http/Controllers/ProfileSummaryControllerTest.php
+    - tests/Feature/Http/Controllers/SkillsControllerTest.php
+    - tests/Feature/Http/Controllers/CompetencyControllerTest.php
+    - tests/Feature/Http/Controllers/KeyAchievementControllerTest.php
+    - tests/Feature/Http/Controllers/ExperienceControllerTest.php
+    - tests/Feature/Http/Controllers/JobResponsibilityControllerTest.php
+    - tests/Feature/Http/Controllers/EducationControllerTest.php
+    - tests/Feature/Http/Controllers/ProfessionalAffiliationControllerTest.php
+    - tests/Feature/Http/Controllers/TrainingControllerTest.php
+    - tests/Feature/Http/Controllers/CareerFocusControllerTest.php
+    - tests/Feature/Http/Controllers/MediaHandleControllerTest.php
+    - tests/Feature/Http/Controllers/SocialHandleControllerTest.php
+    - tests/Feature/Http/Controllers/RefereeControllerTest.php
+    - tests/Feature/Http/Controllers/RecognitionControllerTest.php
+    - tests/Feature/Http/Controllers/Services/PaymentControllerTest.php
+    - tests/Feature/Http/Controllers/Services/RevenueControllerTest.php
+    - app/Http/Requests/CareerUpdateRequest.php
+    - app/Http/Requests/CareerStoreRequest.php
+    - app/Http/Requests/SkillBankUpdateRequest.php
+    - app/Http/Requests/SkillBankStoreRequest.php
+    - app/Http/Requests/Services/ResumeTypeUpdateRequest.php
+    - app/Http/Requests/Services/ResumeTypeStoreRequest.php
+    - app/Http/Requests/Services/ResumeBuildUpdateRequest.php
+    - app/Http/Requests/Services/ResumeBuildStoreRequest.php
+    - app/Http/Requests/ProfileSummaryUpdateRequest.php
+    - app/Http/Requests/ProfileSummaryStoreRequest.php
+    - app/Http/Requests/SkillUpdateRequest.php
+    - app/Http/Requests/SkillStoreRequest.php
+    - app/Http/Requests/CompetencyUpdateRequest.php
+    - app/Http/Requests/CompetencyStoreRequest.php
+    - app/Http/Requests/KeyAchievementUpdateRequest.php
+    - app/Http/Requests/KeyAchievementStoreRequest.php
+    - app/Http/Requests/ExperienceUpdateRequest.php
+    - app/Http/Requests/ExperienceStoreRequest.php
+    - app/Http/Requests/JobResponsibilityUpdateRequest.php
+    - app/Http/Requests/JobResponsibilityStoreRequest.php
+    - app/Http/Requests/EducationUpdateRequest.php
+    - app/Http/Requests/EducationStoreRequest.php
+    - app/Http/Requests/ProfessionalAffiliationUpdateRequest.php
+    - app/Http/Requests/ProfessionalAffiliationStoreRequest.php
+    - app/Http/Requests/TrainingUpdateRequest.php
+    - app/Http/Requests/TrainingStoreRequest.php
+    - app/Http/Requests/CareerFocuUpdateRequest.php
+    - app/Http/Requests/CareerFocuStoreRequest.php
+    - app/Http/Requests/MediaHandleUpdateRequest.php
+    - app/Http/Requests/MediaHandleStoreRequest.php
+    - app/Http/Requests/SocialHandleUpdateRequest.php
+    - app/Http/Requests/SocialHandleStoreRequest.php
+    - app/Http/Requests/RefereeUpdateRequest.php
+    - app/Http/Requests/RefereeStoreRequest.php
+    - app/Http/Requests/RecognitionUpdateRequest.php
+    - app/Http/Requests/RecognitionStoreRequest.php
+    - app/Http/Requests/Services/PaymentUpdateRequest.php
+    - app/Http/Requests/Services/PaymentStoreRequest.php
+    - app/Http/Requests/Services/RevenueUpdateRequest.php
+    - app/Http/Requests/Services/RevenueStoreRequest.php
+    - resources/views/career/index.blade.php
+    - resources/views/career/create.blade.php
+    - resources/views/career/show.blade.php
+    - resources/views/career/edit.blade.php
+    - resources/views/skillBank/index.blade.php
+    - resources/views/skillBank/create.blade.php
+    - resources/views/skillBank/show.blade.php
+    - resources/views/skillBank/edit.blade.php
+    - resources/views/resumeType/index.blade.php
+    - resources/views/resumeType/create.blade.php
+    - resources/views/resumeType/show.blade.php
+    - resources/views/resumeType/edit.blade.php
+    - resources/views/resumeBuild/index.blade.php
+    - resources/views/resumeBuild/create.blade.php
+    - resources/views/resumeBuild/show.blade.php
+    - resources/views/resumeBuild/edit.blade.php
+    - resources/views/profileSummary/index.blade.php
+    - resources/views/profileSummary/create.blade.php
+    - resources/views/profileSummary/show.blade.php
+    - resources/views/profileSummary/edit.blade.php
+    - resources/views/skill/index.blade.php
+    - resources/views/skill/create.blade.php
+    - resources/views/skill/show.blade.php
+    - resources/views/skill/edit.blade.php
+    - resources/views/competency/index.blade.php
+    - resources/views/competency/create.blade.php
+    - resources/views/competency/show.blade.php
+    - resources/views/competency/edit.blade.php
+    - resources/views/keyAchievement/index.blade.php
+    - resources/views/keyAchievement/create.blade.php
+    - resources/views/keyAchievement/show.blade.php
+    - resources/views/keyAchievement/edit.blade.php
+    - resources/views/experience/index.blade.php
+    - resources/views/experience/create.blade.php
+    - resources/views/experience/show.blade.php
+    - resources/views/experience/edit.blade.php
+    - resources/views/jobResponsibility/index.blade.php
+    - resources/views/jobResponsibility/create.blade.php
+    - resources/views/jobResponsibility/show.blade.php
+    - resources/views/jobResponsibility/edit.blade.php
+    - resources/views/education/index.blade.php
+    - resources/views/education/create.blade.php
+    - resources/views/education/show.blade.php
+    - resources/views/education/edit.blade.php
+    - resources/views/professionalAffiliation/index.blade.php
+    - resources/views/professionalAffiliation/create.blade.php
+    - resources/views/professionalAffiliation/show.blade.php
+    - resources/views/professionalAffiliation/edit.blade.php
+    - resources/views/training/index.blade.php
+    - resources/views/training/create.blade.php
+    - resources/views/training/show.blade.php
+    - resources/views/training/edit.blade.php
+    - resources/views/careerFocu/index.blade.php
+    - resources/views/careerFocu/create.blade.php
+    - resources/views/careerFocu/show.blade.php
+    - resources/views/careerFocu/edit.blade.php
+    - resources/views/mediaHandle/index.blade.php
+    - resources/views/mediaHandle/create.blade.php
+    - resources/views/mediaHandle/show.blade.php
+    - resources/views/mediaHandle/edit.blade.php
+    - resources/views/socialHandle/index.blade.php
+    - resources/views/socialHandle/create.blade.php
+    - resources/views/socialHandle/show.blade.php
+    - resources/views/socialHandle/edit.blade.php
+    - resources/views/referee/index.blade.php
+    - resources/views/referee/create.blade.php
+    - resources/views/referee/show.blade.php
+    - resources/views/referee/edit.blade.php
+    - resources/views/recognition/index.blade.php
+    - resources/views/recognition/create.blade.php
+    - resources/views/recognition/show.blade.php
+    - resources/views/recognition/edit.blade.php
+    - resources/views/payment/index.blade.php
+    - resources/views/payment/create.blade.php
+    - resources/views/payment/show.blade.php
+    - resources/views/payment/edit.blade.php
+    - resources/views/revenue/index.blade.php
+    - resources/views/revenue/create.blade.php
+    - resources/views/revenue/show.blade.php
+    - resources/views/revenue/edit.blade.php
+updated:
+    - routes/web.php
+models:
+    Currency: { currency: string, symbol: string, value: 'integer unsigned nullable' }
+    Lookups\City: { name: 'string nullable', state_id: 'integer unsigned nullable' }
+    Lookups\Country: { sortname: 'string:3 nullable', name: 'string:150 nullable', phonecode: 'integer unsigned nullable' }
+    Lookups\State: { name: 'string nullable', country_id: 'integer unsigned nullable' }
+    User: {  }
+    Career: { name: 'string nullable', relationships: { belongsToMany: SkillBank } }
+    SkillBank: { career_id: 'id foreign nullable', skill: 'string index nullable', relationships: { belongsToMany: User } }
+    Services\ResumeType: { type: 'string nullable', cost: 'integer unsigned nullable index' }
+    Services\ResumeBuild: { orderID: 'uuid unique nullable', name: 'string unique nullable', resume_type_id: 'id foreign', user_id: 'id foreign.users.id index', completed: 'boolean default:false nullable', asDownload: 'boolean default:false nullable', paymentSuccessful: 'boolean default:false nullable', datePurchased: 'dateTime nullable', relationships: { belongsToMany: User } }
+    Services\Payment: { user_id: 'id foreign.users.id index nullable', resume_build_id: 'id foreign nullable', AmountPaid: 'unsigned integer nullable', paymentStatus: 'boolean default:false', relationships: { hasMany: 'User, ResumeBuild' } }
+    Services\Revenue: { Income: 'unsigned integer nullable', Expenses: 'unsigned integer nullable' }
+    ProfileSummary: { user_id: 'id foreign.users.id index', summary: 'longText nullable' }
+    Skills: { user_id: 'id foreign.users.id index', skill_bank_id: 'id foreign nullable index' }
+    Competency: { user_id: 'id foreign.users.id index', competenciesList: 'string nullable' }
+    KeyAchievement: { user_id: 'id foreign.users.id index', achievementList: 'string nullable' }
+    Experience: { user_id: 'id foreign.users.id index', companyName: 'string nullable', positionHeld: 'string:180 nullable', fromYear: 'date nullable index', toYear: 'date index nullable', isCurrentJob: 'boolean default:false' }
+    JobResponsibility: { experience_id: 'id foreign index nullable', responsibility: 'string nullable' }
+    Education: { user_id: 'id foreign.users.id index', degreeObtainWithCourse: 'string nullable', schoolAttended: 'string nullable', YearGraduated: 'date nullable index', gradeObtain: 'string nullable' }
+    ProfessionalAffiliation: { user_id: 'id foreign.users.id index', body: 'string nullable index', bodyFullName: 'string nullable index', dateObtained: 'date nullable index' }
+    Training: { user_id: 'id foreign.users.id index', trainingCoursesList: 'string nullable index' }
+    CareerFocus: { user_id: 'id foreign.users.id index', careerKeyArea: 'string nullable' }
+    MediaHandle: { name: 'string nullable index' }
+    SocialHandle: { user_id: 'id foreign.users.id index', media_handle_id: 'id foreign', socialLinkUrl: 'string nullable' }
+    Referee: { user_id: 'id foreign.users.id index nullable', refFullName: 'string nullable' }
+    Recognition: { user_id: 'id foreign.users.id index', recognitionList: 'string nullable' }

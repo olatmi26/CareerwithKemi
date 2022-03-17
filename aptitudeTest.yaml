@@ -1,0 +1,208 @@
+models:
+  AptitudeTest\SetupAptitudeTest:
+    name: string nullable
+    description: longText nullable
+    timeAlloted: timestamp nullable
+    duration: unsigned integer nullable
+    Image: string nullable
+    isPublished: boolean nullable default:false
+    relationships:
+      hasMany: Question
+
+  Lookups\Location:
+    name: string nullable
+    state_id: integer unsigned nullable
+    city: string nullable
+
+  Lookups\Company:
+    name: string nullable
+    relationships:
+      belongsToMany: Department
+
+  Lookups\Department:
+    name: string nullable
+    company_id: id foreign nullable
+    relationships:
+      belongsToMany: Company  
+
+  AptitudeTest\VacantPosition:
+    position: string:180 nullable
+    company_id: id foreign nullable
+    location_id: id foreign nullable
+    description: longText nullable
+    MinAmountExpect: integer unsigned nullable
+    MaxAmountExpect: integer unsigned nullable
+    otherBenefits: longText nullable
+
+  AptitudeTest\Applicant:
+    FirstName: string:40 nullable
+    LastName: string:40 nullable
+    OtherName: string:40 nullable
+    email: string unique nullable
+    phoneN0: string:11 nullable
+    Photo: string nullable
+    ResidentialAddress: string nullable
+    ResumeSubmitted: string nullable
+    password: string nullable
+   
+  AptitudeTest\Attendee:
+    applicant_id: id foreign nullable
+    vacant_position_id: id foreign nullable
+    AsDoneAptitudeTest: boolean nullable default:false
+    Score: integer unsigned nullable
+    GrossSalary: integer unsigned nullable
+    NetSalary: integer unsigned nullable    
+    ResumptionDate: dateTime nullable
+    TestPassStatus: boolean nullable default:false
+    
+  AptitudeTest\AssignCompany:
+    company_id: id foreign nullable
+    department_id: id foreign nullable
+    setup_aptitude_test_id: id foreign nullable
+
+  AptitudeTest\Question:
+    setup_aptitude_test_id: id foreign nullable
+    question: longText nullable
+    relationships:
+      hasMany: Option
+
+  AptitudeTest\Option:
+    setup_aptitude_test_id: id foreign nullable
+    question_id: id unsigned integer nullable
+    option: string nullable
+    isAnswer: boolean default:false
+
+  AptitudeTest\SetoutExam:
+    setup_aptitude_test_id: id foreign nullable
+    Location_id: unsigned integer nullable
+    DateRollout: dateTime nullable
+    TimeAllocated: timestamp nullable
+    RollOutBy: unsigned integer nullable
+    TotalN0ofQuestions: unsigned integer nullable
+
+  AptitudeTest\RolloutQuestion:
+    setout_exam_id: id foreign nullable
+    question_id: id foreign
+
+  AptitudeTest\AttemptTest:
+    applicant_id: id foreign
+    question_id: id foreign
+    rollout_question_id: id foreign nullable
+    setout_exam_id: id foreign
+    timeSpent: timestamp nullable
+
+  AptitudeTest\TestResult:
+    applicant_id: id foreign nullable
+    TotalQuestionAttempted: integer unsigned nullable
+    TotalQuestionGotCorrectly: integer unsigned nullable
+    TotalQuestionGotWrongly: integer unsigned nullable
+    ScoreGet: integer unsigned nullable
+
+seeders: VacantPosition, Location, Applicant
+
+controllers:
+  AptitudeTest\SetupAptitudeTest:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: name,  description,  timeAlloted
+      save: setupAptitudeTest
+      flash: setupAptitudeTest.created
+      redirect: setupAptitudeTest.index
+
+  AptitudeTest\Applicant:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: FirstName, LastName, OtherName, email, phoneN0, ResidentialAddress, ResumeSubmitted:nullable
+      save: registerApplicant
+      flash: registerApplicant.created.successfully
+      redirect: Applicant.index
+
+  AptitudeTest\AssignCompany:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: company_id,  department_id,  setup_aptitude_test_id,
+      save: AssignCompany
+      flash: AssignCompany.created
+      redirect: AssignCompany.index
+
+  AptitudeTest\Question:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: setup_aptitude_test_id,  question
+      save: Question
+      flash: Question.created
+      redirect: Question.index
+
+  AptitudeTest\Option:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: setup_aptitude_test_id, question_id, option, isAnswer
+      save: Option
+      flash: Option.created
+      redirect: Option.index
+
+  AptitudeTest\SetoutExam:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: setup_aptitude_test_id,  Location_id,  DateRollout,  TimeAllocated, duration
+      save: setoutExam
+      flash: setoutExam.created
+      redirect: SetoutExam.index
+
+  AptitudeTest\RolloutQuestion:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate:  RolloutQuestion,  setout_exam_id,
+      save: totalQ
+      flash: totalQ.created
+      redirect: RolloutQuestion.index
+
+  AptitudeTest\AttemptTest:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: applicant_id, question_id, rollout_question_id, setout_exam_id, applicant_id
+      save: attemptTest
+      flash: attemptTest.created
+      redirect: AttemptTest.index
+
+  AptitudeTest\TestResult:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: applicant_id, TotalQuestionAttempted, ScoreGet
+      save: examResult
+      flash: examResult.created
+      redirect: TestResult.index
+      
+  AptitudeTest\VacantPosition:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: position, description, MinAmountExpect:nullable, MaxAmountExpect:nullable
+      save: vacantPosition
+      flash: vacantPosition.created
+      redirect: VacantPosition.index
+
+  Lookups\Location:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: name, state_id, city:nullable
+      save: location
+      flash: location.created.successfully
+      redirect: location.index
+
+  AptitudeTest\Attendee:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: applicant_id, vacant_position_id:nullable, AsDoneAptitudeTest:nullable, Score:nullable, TestPassStatus:nullable
+      save: attendee
+      flash: attendee.created.successfully
+      redirect: Applicant.index
+
+  Lookups\Company:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: name
+      save: company
+      flash: company.created.successfully
+      redirect: Company.index
+
+

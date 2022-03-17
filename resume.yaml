@@ -1,0 +1,271 @@
+models:
+  Career:
+    name: string nullable
+    relationships:
+      belongsToMany: SkillBank
+
+  SkillBank:
+    career_id: id foreign nullable
+    skill: string index nullable
+    relationships:
+      belongsToMany: User
+
+  Services\ResumeType:
+    type: string nullable
+    cost: integer unsigned nullable index
+
+  Services\ResumeBuild:
+    orderID: uuid unique nullable
+    name: string unique nullable
+    resume_type_id: id foreign
+    user_id: id foreign.users.id index
+    completed: boolean default:false nullable
+    asDownload: boolean default:false nullable
+    paymentSuccessful: boolean default:false nullable
+    datePurchased: dateTime nullable
+    relationships:
+      belongsToMany: User
+  
+  Services\Payment:
+    user_id: id foreign.users.id index nullable
+    resume_build_id: id foreign nullable
+    AmountPaid: unsigned integer nullable
+    paymentStatus: boolean default:false
+    relationships:
+      hasMany: User, ResumeBuild
+
+  Services\Revenue:
+    Income: unsigned integer nullable
+    Expenses: unsigned integer nullable  
+
+  ProfileSummary:
+    user_id: id foreign.users.id index
+    summary: longText nullable
+
+  Skills:
+    user_id: id foreign.users.id index
+    skill_bank_id: id foreign nullable index
+
+  Competency:
+    user_id: id foreign.users.id index
+    competenciesList: string nullable
+
+  KeyAchievement:
+    user_id: id foreign.users.id index
+    achievementList: string nullable
+
+  Experience:
+    user_id: id foreign.users.id index
+    companyName: string nullable
+    positionHeld: string:180 nullable
+    fromYear: date nullable index
+    toYear: date index nullable
+    isCurrentJob: boolean default:false
+
+  JobResponsibility:
+    experience_id: id foreign index nullable
+    responsibility: string nullable
+
+  Education:
+    user_id: id foreign.users.id index
+    degreeObtainWithCourse: string nullable
+    schoolAttended: string nullable
+    YearGraduated: date nullable index
+    gradeObtain: string nullable
+
+  ProfessionalAffiliation:
+    user_id: id foreign.users.id index
+    body: string nullable index
+    bodyFullName: string nullable index
+    dateObtained: date nullable index
+
+  Training:
+    user_id: id foreign.users.id index
+    trainingCoursesList: string nullable index
+
+  CareerFocus:
+    user_id: id foreign.users.id index
+    careerKeyArea: string nullable
+
+  MediaHandle:
+    name: string nullable index
+
+  SocialHandle:
+    user_id: id foreign.users.id index
+    media_handle_id: id foreign
+    socialLinkUrl: string nullable
+
+  Referee:
+    user_id: id foreign.users.id index nullable
+    refFullName: string nullable
+
+  Recognition:
+    user_id: id foreign.users.id index
+    recognitionList: string nullable
+
+seeders: ResumeType, MediaHandle, Career, SkillBank
+
+controllers:
+  Career:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: name
+      save: career
+      flash: career.created-successfully
+      redirect: Career.index
+
+  SkillBank:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: career_id, skill
+      save: skillBank
+      flash: skillBank.created-successfully
+      redirect: SkillBank.index
+
+  Services\ResumeType:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: type, cost
+      save: resumeType
+      flash: resumeType.created-successfully
+      redirect: Services\ResumeType.index
+
+  Services\ResumeBuild:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: name:nullable, resume_type_id, user_id, completed:nullable, asDownload:nullable, datePurchased:nullable, paymentSuccessful:nullable
+      save: resumeBuild
+      flash: resumeBuild.created-successfully
+      redirect: ResumeBuild.index
+
+  ProfileSummary:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: user_id, summary
+      save: profileSummary
+      flash: profileSummary.created-successfully
+      redirect: ResumeBuild.index
+
+  Skills:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: user_id, skill_bank_id
+      save: skills
+      flash:  skills.created-successfully
+      redirect: ResumeBuild.index
+
+  Competency:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: user_id, competenciesList
+      save: competency
+      flash: competency.added
+      redirect: ResumeBuild.create
+
+  KeyAchievement:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: user_id, achievementList
+      save: keyAchievement
+      flash: keyAchievement
+      redirect: ResumeBuild.create
+
+  Experience:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: user_id, companyName, positionHeld, fromYear, toYear,isCurrentJob
+      save: experience
+      flash: experience.added
+      redirect: JobResponsibility.create
+
+  JobResponsibility:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate:  experience_id, responsibility
+      save: jobResponsibility
+      flash: jobResponsibility.saved
+      redirect: ResumeBuild.create
+
+  Education:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: user_id, degreeObtainWithCourse, schoolAttended, YearGraduated, gradeObtain
+      save: education
+      flash:  education.addedSuccessfully
+      redirect: ResumeBuild.create
+
+  ProfessionalAffiliation:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: user_id, body, bodyFullName, dateObtained
+      save: professionalAffiliation
+      flash: professionalAffiliation.addedSuccessfully
+      redirect: ResumeBuild.create
+
+  Training:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: user_id, trainingCoursesList
+      save: training
+      flash: training.addedSuccessfully
+      redirect: ResumeBuild.create
+
+  CareerFocus:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: user_id, careerKeyArea
+      save: careerFocus
+      flash:  careerFocus.added
+      redirect: ResumeBuild.create
+
+  MediaHandle:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate:  name
+      save: mediaHandle
+      flash: mediaHandle.addedSuccessfully
+      redirect: MediaHandle.index
+
+  SocialHandle:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: user_id, media_handle_id, socialLinkUrl
+      save: socialHandle
+      flash: socialHandle.addedSuccessfully
+      redirect: ResumeBuild.create
+
+  Referee:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: user_id, refFullName
+      save: saveRef
+      flash: saveRef.saved
+      redirect: ResumeBuild.create
+
+  Recognition:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: user_id, recognitionList
+      save: recognitionList
+      flash: recognitionList.saved
+      redirect: ResumeBuild.create
+
+  Services\Payment:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: user_id, resume_build_id, AmountPaid, paymentStatus
+      save: payment
+      flash: payment.successful
+      redirect: Payment.index
+
+  Services\Revenue:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate:  Income, Expenses
+      save: revenue
+      flash: revenue.created
+      redirect: Revenue.index
+
+
+
+
