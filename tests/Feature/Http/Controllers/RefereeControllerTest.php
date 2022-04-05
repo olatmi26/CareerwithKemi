@@ -92,13 +92,18 @@ class RefereeControllerTest extends TestCase
     public function update_redirects()
     {
         $referee = Referee::factory()->create();
+        $onRequest = $this->faker->boolean;
 
-        $response = $this->put(route('referee.update', $referee));
+        $response = $this->put(route('referee.update', $referee), [
+            'onRequest' => $onRequest,
+        ]);
 
         $referee->refresh();
 
         $response->assertRedirect(route('referee.index'));
         $response->assertSessionHas('referee.id', $referee->id);
+
+        $this->assertEquals($onRequest, $referee->onRequest);
     }
 
 
@@ -135,16 +140,16 @@ class RefereeControllerTest extends TestCase
     public function store_saves_and_redirects()
     {
         $user = User::factory()->create();
-        $refFullName = $this->faker->word;
+        $onRequest = $this->faker->boolean;
 
         $response = $this->post(route('referee.store'), [
             'user_id' => $user->id,
-            'refFullName' => $refFullName,
+            'onRequest' => $onRequest,
         ]);
 
         $referees = SaveRef::query()
             ->where('user_id', $user->id)
-            ->where('refFullName', $refFullName)
+            ->where('onRequest', $onRequest)
             ->get();
         $this->assertCount(1, $referees);
         $referee = $referees->first();

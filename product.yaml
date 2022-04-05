@@ -1,0 +1,32 @@
+models:
+  Category:
+    name: string nullable
+    
+  Product:
+    category_id: id foreign index nullable
+    name: string nullable
+    qtyInStock: unsigned integer index nullable
+    price: unsigned integer index nullable
+    image: string nullable index
+    availability: boolean default:true
+    discountAllow: unsigned integer index nullable
+
+controllers:
+  Category:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: name
+      save: saveCategory
+      flash: saveCategory.created
+      redirect: Category.index
+
+  Product:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: name, qtyInStock:nullable, price:nullable, image:nullable, availability:nullable, category_id:nullable, discountAllow:nullable
+      save: saveProduct
+      flash: Product.created
+      redirect: Product.index
+
+
+

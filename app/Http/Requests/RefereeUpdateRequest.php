@@ -26,6 +26,11 @@ class RefereeUpdateRequest extends FormRequest
         return [
             'user_id' => ['integer', 'exists:users,id'],
             'refFullName' => ['string'],
+            'refOrganisation' => ['string', 'max:140'],
+            'refPosition' => ['string'],
+            'refEmail' => ['string', 'unique:referees,refEmail'],
+            'refPhone' => ['string', 'max:11', 'unique:referees,refPhone'],
+            'onRequest' => ['required'],
         ];
     }
 }

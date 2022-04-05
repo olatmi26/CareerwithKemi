@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,58 +15,68 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', function () {
-    return view('page1');
-});
+//
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-// require __DIR__ . '/auth.php';
+require __DIR__ . '/auth.php';
+
+// Auth::routes();
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+
+Route::resource('career', CareerController::class);
+
+Route::resource('skill-bank', SkillBankController::class);
+
+Route::resource('resume-type', Services\ResumeTypeController::class);
+
+Route::resource('resume-build', Services\ResumeBuildController::class);
+
+Route::resource('profile-summary', ProfileSummaryController::class);
+
+Route::resource('skills', SkillsController::class);
+
+Route::resource('competency', CompetencyController::class);
+
+Route::resource('key-achievement', KeyAchievementController::class);
+
+Route::resource('experience', ExperienceController::class);
+
+Route::resource('job-responsibility', JobResponsibilityController::class);
+
+Route::resource('education', EducationController::class);
+
+Route::resource('professional-affiliation', ProfessionalAffiliationController::class);
+
+Route::resource('training', TrainingController::class);
+
+Route::resource('career-focus', CareerFocusController::class);
+
+Route::resource('media-handle', MediaHandleController::class);
+
+Route::resource('social-handle', SocialHandleController::class);
+
+Route::resource('referee', RefereeController::class);
+
+Route::resource('recognition', RecognitionController::class);
+
+Route::resource('payment', Services\PaymentController::class);
+
+Route::resource('revenue', Services\RevenueController::class);
+
+Route::resource('category', CategoryController::class);
+
+Route::resource('product', ProductController::class);
+
+// Route::get('/', 'PageController@index')->name('index-page');
+Route::get('/{page}', 'PageController@gotoPage')->name('page')->where('page', 'about|about-us|contact|contact-us|terms|privacy-policy'); 
+Route::get('/', [PageController::class, 'index'])->name('index-page');
+Auth::routes();
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
-
-Route::resource('career', App\Http\Controllers\CareerController::class);
-
-Route::resource('skill-bank', App\Http\Controllers\SkillBankController::class);
-
-Route::resource('resume-type', App\Http\Controllers\Services\ResumeTypeController::class);
-
-Route::resource('resume-build', App\Http\Controllers\Services\ResumeBuildController::class);
-
-Route::resource('profile-summary', App\Http\Controllers\ProfileSummaryController::class);
-
-Route::resource('skills', App\Http\Controllers\SkillsController::class);
-
-Route::resource('competency', App\Http\Controllers\CompetencyController::class);
-
-Route::resource('key-achievement', App\Http\Controllers\KeyAchievementController::class);
-
-Route::resource('experience', App\Http\Controllers\ExperienceController::class);
-
-Route::resource('job-responsibility', App\Http\Controllers\JobResponsibilityController::class);
-
-Route::resource('education', App\Http\Controllers\EducationController::class);
-
-Route::resource('professional-affiliation', App\Http\Controllers\ProfessionalAffiliationController::class);
-
-Route::resource('training', App\Http\Controllers\TrainingController::class);
-
-Route::resource('career-focus', App\Http\Controllers\CareerFocusController::class);
-
-Route::resource('media-handle', App\Http\Controllers\MediaHandleController::class);
-
-Route::resource('social-handle', App\Http\Controllers\SocialHandleController::class);
-
-Route::resource('referee', App\Http\Controllers\RefereeController::class);
-
-Route::resource('recognition', App\Http\Controllers\RecognitionController::class);
-
-Route::resource('payment', App\Http\Controllers\Services\PaymentController::class);
-
-Route::resource('revenue', App\Http\Controllers\Services\RevenueController::class);

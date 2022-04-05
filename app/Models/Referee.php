@@ -17,6 +17,11 @@ class Referee extends Model
     protected $fillable = [
         'user_id',
         'refFullName',
+        'refOrganisation',
+        'refPosition',
+        'refEmail',
+        'refPhone',
+        'onRequest',
     ];
 
     /**
@@ -27,6 +32,7 @@ class Referee extends Model
     protected $casts = [
         'id' => 'integer',
         'user_id' => 'integer',
+        'onRequest' => 'boolean',
     ];
 
     public function user()

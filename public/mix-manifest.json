@@ -1,4 +1,9 @@
 {
+    "/js/app.js": "/js/app.js",
+    "/js/adminsrcipts.js": "/js/adminsrcipts.js",
+    "/css/app2.css": "/css/app2.css",
+    "/css/app.css": "/css/app.css",
     "/css/plugins/fonts-loader.css": "/css/plugins/fonts-loader.css",
+    "/css/plugins/dashboard-template.css": "/css/plugins/dashboard-template.css",
     "/css/sitestyle.css": "/css/sitestyle.css"
 }

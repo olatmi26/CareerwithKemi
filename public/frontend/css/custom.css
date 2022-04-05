@@ -1,0 +1,10 @@
+.overlay.overlay-op-8:hover:before, .overlay.overlay-op-8.overlay-show:before, .overlay.overlay-op-8.show:before {
+    opacity: 0.65;
+}
+#header .header-container.header-container-height-sm {
+    height: 85px;
+}
+
+.header-body.border-top-0.bg-dark.box-shadow-none {
+    top: 0px !important;
+}

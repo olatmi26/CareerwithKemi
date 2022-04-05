@@ -26,6 +26,11 @@ class RefereeFactory extends Factory
         return [
             'user_id' => User::factory(),
             'refFullName' => $this->faker->word,
+            'refOrganisation' => $this->faker->regexify('[A-Za-z0-9]{140}'),
+            'refPosition' => $this->faker->word,
+            'refEmail' => $this->faker->word,
+            'refPhone' => $this->faker->regexify('[A-Za-z0-9]{11}'),
+            'onRequest' => $this->faker->boolean,
         ];
     }
 }

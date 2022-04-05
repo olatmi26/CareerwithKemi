@@ -47,6 +47,7 @@ class ResumeBuild extends Model
 
     public function resumeType()
     {
+       
         return $this->belongsTo(ResumeType::class);
     }
 

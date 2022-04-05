@@ -1,0 +1,21 @@
+models:  
+  Referee:
+    user_id: id foreign.users.id index nullable
+    refFullName: string nullable    
+    refOrganisation: string:140 nullable
+    refPosition: string nullable
+    refEmail: string unique nullable
+    refPhone: string:11 unique index nullable
+    onRequest: boolean default:false
+
+controllers:
+  Referee:
+    resource: index, show, create, edit, destroy, update
+    store:
+      validate: user_id, refFullName:nullable, refOrganisation:nullable, refPosition:nullable, refEmail:nullable, refPhone:nullable, onRequest:nullable
+      save: saveRef
+      flash: saveRef.saved
+      redirect: ResumeBuild.create
+
+  
+  
